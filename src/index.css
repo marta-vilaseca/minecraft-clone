@@ -61,3 +61,13 @@ body {
 .texture-selector img.selected {
   border-color:#fff;
 }
+
+.menu {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.menu button {
+  margin-right: 5px;
+}

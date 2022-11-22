@@ -1,7 +1,7 @@
 import { PointerLockControls } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 
-export function FPV() {
+export const FPV = () => {
     const { camera, gl } = useThree()
 
     return (

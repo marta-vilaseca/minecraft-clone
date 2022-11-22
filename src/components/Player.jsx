@@ -1,5 +1,5 @@
-import { useSphere } from '@react-three/cannon'
 import { useFrame, useThree } from '@react-three/fiber'
+import { useSphere } from '@react-three/cannon'
 import { useEffect, useRef } from 'react'
 import { Vector3 } from 'three'
 import { useKeyboard } from '../hooks/useKeyboard'
@@ -20,7 +20,7 @@ export const Player = () => {
     const [ref, api] = useSphere(() => ({
         mass: 1,
         type: "Dynamic",
-        position: [0, 0.5, 0]
+        position: [0, 1, 0]
     }))
 
     const pos = useRef([0, 0, 0])
@@ -32,8 +32,8 @@ export const Player = () => {
 
     const vel = useRef([0, 0, 0])
     useEffect(() => {
-        api.velocity.subscribe(p => {
-            vel.current = p
+        api.velocity.subscribe(v => {
+            vel.current = v
         })
     }, [api.velocity])
 
@@ -63,7 +63,7 @@ export const Player = () => {
         direction
             .subVectors(frontVector, sideVector)
             .normalize()
-            .multiplyScalar(CHARACTER_SPEED) // walk: 2, run: 5
+            .multiplyScalar(CHARACTER_SPEED)
             .applyEuler(camera.rotation)
 
         api.velocity.set(
@@ -82,6 +82,6 @@ export const Player = () => {
     })
 
     return (
-        <mesh ref={ref} />
+        <mesh ref={ref}></mesh>
     )
 }

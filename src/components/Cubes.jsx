@@ -4,11 +4,10 @@ import { Cube } from "./Cube"
 export const Cubes = () => {
     const [cubes] = useStore(state => [state.cubes])
 
-    return cubes.map(({id, pos, texture}) => {
+    return cubes.map(({key, pos, texture}) => {
         return (
             <Cube 
-                key={id} 
-                id={id}
+                key={key} 
                 position={pos} 
                 texture={texture}
             /> 

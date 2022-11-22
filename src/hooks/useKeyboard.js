@@ -1,63 +1,69 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 const ACTIONS_KEYBOARD_MAP = {
-    KeyW: 'moveForward',
-    KeyS: 'moveBackward',
-    KeyA: 'moveLeft',
-    KeyD: 'moveRight',
-    Space: 'jump',
-    Digit1: 'dirt',
-    Digit2: 'glass', 
-    Digit3: 'grass',
-    Digit4: 'log',
-    Digit5: 'wood',
+  KeyW: 'moveForward',
+  KeyS: 'moveBackward',
+  KeyA: 'moveLeft',
+  KeyD: 'moveRight',
+  Space: 'jump',
+  Digit1: 'dirt',
+  Digit2: 'grass',
+  Digit3: 'glass',
+  Digit4: 'wood',
+  Digit5: 'log'
 }
 
 export const useKeyboard = () => {
-    const [actions, setActions] = useState({
-        moveForward: false,
-        moveBackward: false,
-        moveLeft: false,
-        moveRight: false,
-        jump: false,
-        dirt: false,
-        grass: false,
-        glass: false,
-        wood: false,
-        log: false,
-    })
+  const [actions, setActions] = useState({
+    moveForward: false,
+    moveBackward: false,
+    moveLeft: false,
+    moveRight: false,
+    jump: false,
+    dirt: false,
+    grass: false,
+    glass: false,
+    wood: false,
+    log: false
+  })
 
-    useEffect(() => {
-        const handleKeyDown = e => {
-            const {code} = e
-            const action = ACTIONS_KEYBOARD_MAP[code]
-            if (action) {
-                setActions(prevActions => ({
-                    ...prevActions,
-                    [action]: true
-                }))
-            }
-        }
+  useEffect(() => {
+    const handleKeyDown = event => {
+      const { code } = event
+      const action = ACTIONS_KEYBOARD_MAP[code]
 
-        const handleKeyUp = e => {
-            const {code} = e
-            const action = ACTIONS_KEYBOARD_MAP[code]
-            if (action) {
-                setActions(prevActions => ({
-                    ...prevActions,
-                    [action]: false
-                }))
-            }
-        }
+      if (action) {
+        // if (actions[action]) return
 
-        document.addEventListener('keydown', handleKeyDown)
-        document.addEventListener('keyup', handleKeyUp)
+        setActions(prevActions => ({
+          ...prevActions,
+          [action]: true
+        }))
+      }
+    }
 
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown)
-            document.removeEventListener('keyup', handleKeyUp)
-        }
-    }, [])
+    const handleKeyUp = event => {
+      const { code } = event
+      const action = ACTIONS_KEYBOARD_MAP[code]
 
-    return actions
+      if (action) {
+        // if (!actions[action]) return
+
+        setActions(prevActions => ({
+          ...prevActions,
+          [action]: false
+        }))
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('keyup', handleKeyUp)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('keyup', handleKeyUp)
+    }
+  }, [])
+
+  return actions
 }

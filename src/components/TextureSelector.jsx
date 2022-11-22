@@ -1,11 +1,19 @@
-import { useStore } from "../hooks/useStore"
 import { useEffect, useState } from "react"
-import * as images from "../images/images"
+import { useStore } from "../hooks/useStore"
 import { useKeyboard } from "../hooks/useKeyboard"
+import { dirtImg, grassImg, glassImg, logImg, woodImg } from '../images/images'
+
+const images = {
+	dirt: dirtImg,
+	grass: grassImg,
+	glass: glassImg,
+	wood: woodImg,
+	log: logImg,
+}
 
 export const TextureSelector = () => {
     const [visible, setVisible] = useState(false)
-    const [texture, setTexture] = useStore(state => [state.texture, state.setTexture])
+    const [activeTexture, setTexture] = useStore(state => [state.texture, state.setTexture])
 
     const {
         dirt,
@@ -16,18 +24,7 @@ export const TextureSelector = () => {
     } = useKeyboard()
 
     useEffect(() => {
-        const visibilityTimeout = setTimeout(() => {
-            setVisible(false)
-        }, 2000)
-        setVisible(true)
-
-        return () => {
-            clearTimeout(visibilityTimeout)
-        }
-    }, [texture])
-
-    useEffect(() => {
-        const options = {
+        const textures = {
             dirt,
             grass,
             glass,
@@ -36,15 +33,26 @@ export const TextureSelector = () => {
         }
 
         const selectedTexture = Object
-            .entries(options)
-            .find(([texture, isEnabled]) => isEnabled)
+            .entries(textures)
+            .find(([k, v]) => v)
 
         if (selectedTexture) { 
-            const [textureName] = selectedTexture
-            setTexture(textureName)
+            setTexture(selectedTexture[0])
         }
 
-    }, [dirt, grass, glass, log, wood])
+    }, [setTexture, dirt, grass, glass, log, wood])
+
+    useEffect(() => {
+        const visibilityTimeout = setTimeout(() => {
+            setVisible(false)
+        }, 2000)
+
+        setVisible(true)
+
+        return () => {
+            clearTimeout(visibilityTimeout)
+        }
+    }, [activeTexture])
 
     return (
         <div className={`texture-selector ${visible ? '' : 'hidden'}`}>
@@ -54,11 +62,11 @@ export const TextureSelector = () => {
                   .map(([imgKey, img]) => {
                     return (
                         <img 
-                            className={texture === imgKey.replace('Img', '') ? 'selected' : ''}
+                            className={activeTexture === imgKey.replace('Img', '') ? 'selected' : ''}
                             key={imgKey}
                             src={img}
                             alt={imgKey}
-                            onClick={() => setTexture(imgKey)}
+                            /* onClick={() => setTexture(imgKey)} */
                         />
                     )
                 })
