@@ -13,7 +13,8 @@ export const Player = () => {
         moveForward,
         moveLeft,
         moveRight,
-        jump
+        jump,
+        shift
     } = useKeyboard()
 
     const { camera } = useThree()
@@ -63,7 +64,7 @@ export const Player = () => {
         direction
             .subVectors(frontVector, sideVector)
             .normalize()
-            .multiplyScalar(CHARACTER_SPEED)
+            .multiplyScalar(CHARACTER_SPEED + (shift ? 4 : 0))
             .applyEuler(camera.rotation)
 
         api.velocity.set(

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: minecraft;
+  src: url('./assets/Minecraft.ttf');
+}
+
 * {
   box-sizing: border-box;
 }
@@ -66,8 +71,55 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
+  display: flex;
 }
 
 .menu button {
   margin-right: 5px;
+  border: 2px solid black;
+  color: white;
+  text-shadow: 2px 2px #333;
+  background-color: #666;
+  padding: 0 8px;
+  height: 30px;
+  font: 16px/30px 'minecraft', monospace;
+}
+
+.menu button:hover {
+  color: yellow;
+  background-color: #6589AC;
+  cursor: pointer;
+}
+
+.controls {
+  background-color:rgba(0,0,0,0.5);
+}
+
+.controls ul {
+  margin:0;
+  padding:0 10px;
+  list-style-type: none;
+  font: 15px/30px arial, sans-serif;
+}
+
+.controls li {
+  display: inline-block;
+  margin-right: 5px;
+  color: white;
+}
+
+.controls span {
+  font-weight: bold;
+  color: orange;
+}
+
+.btn-close {
+  position: absolute;
+  top:12px;
+  left:0;
+  background-color: transparent;
+  color: #fff;
+  border: 0;
+  font: 16px/26px 'minecraft', monospace;
+  font-weight: bold;
 }
