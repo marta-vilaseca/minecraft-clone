@@ -112,14 +112,3 @@ body {
   font-weight: bold;
   color: orange;
 }
-
-.btn-close {
-  position: absolute;
-  top:12px;
-  left:0;
-  background-color: transparent;
-  color: #fff;
-  border: 0;
-  font: 16px/26px 'minecraft', monospace;
-  font-weight: bold;
-}

@@ -47,7 +47,7 @@ export const Menu = () => {
                     <li><span>Run:</span> Shift</li>
                     <li><span>Add block:</span> Click</li>
                     <li><span>Remove Block:</span> Alt + Click</li>
-                    <li><span>Pick Texture:</span> 1,2,3,4,5</li>
+                    <li><span>Pick Texture:</span> 1,2,3... 0</li>
                 </ul>
             </div>}
         </div>
