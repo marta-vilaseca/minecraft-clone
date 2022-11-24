@@ -11,7 +11,12 @@ const ACTIONS_KEYBOARD_MAP = {
   Digit2: 'grass',
   Digit3: 'glass',
   Digit4: 'wood',
-  Digit5: 'log'
+  Digit5: 'log',
+  Digit6: 'black',
+  Digit7: 'brick',
+  Digit8: 'stone',
+  Digit9: 'redconcrete',
+  Digit0: 'whiteconcrete'
 }
 
 export const useKeyboard = () => {
@@ -26,7 +31,12 @@ export const useKeyboard = () => {
     grass: false,
     glass: false,
     wood: false,
-    log: false
+    log: false,
+    black: false,
+    brick: false,
+    stone: false,
+    redconcrete: false,
+    whiteconcrete: false,
   })
 
   useEffect(() => {

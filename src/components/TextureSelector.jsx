@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useStore } from "../hooks/useStore"
 import { useKeyboard } from "../hooks/useKeyboard"
-import { dirtImg, grassImg, glassImg, logImg, woodImg } from '../images/images'
+import { dirtImg, grassImg, glassImg, logImg, woodImg, blackImg, brickImg, stoneImg, redconcreteImg, whiteconcreteImg } from '../images/images'
 
 const images = {
 	dirt: dirtImg,
@@ -9,6 +9,11 @@ const images = {
 	glass: glassImg,
 	wood: woodImg,
 	log: logImg,
+    black: blackImg, 
+    brick: brickImg, 
+    stone: stoneImg, 
+    redconcrete: redconcreteImg, 
+    whiteconcrete: whiteconcreteImg
 }
 
 export const TextureSelector = () => {
@@ -20,7 +25,12 @@ export const TextureSelector = () => {
         grass,
         glass,
         wood,
-        log
+        log,
+        black,
+        brick,
+        stone,
+        redconcrete,
+        whiteconcrete
     } = useKeyboard()
 
     useEffect(() => {
@@ -29,7 +39,12 @@ export const TextureSelector = () => {
             grass,
             glass,
             wood,
-            log
+            log,
+            black,
+            brick,
+            stone,
+            redconcrete,
+            whiteconcrete
         }
 
         const selectedTexture = Object
@@ -40,7 +55,7 @@ export const TextureSelector = () => {
             setTexture(selectedTexture[0])
         }
 
-    }, [setTexture, dirt, grass, glass, log, wood])
+    }, [setTexture, dirt, grass, glass, log, wood, black, brick, stone, redconcrete, whiteconcrete])
 
     useEffect(() => {
         const visibilityTimeout = setTimeout(() => {

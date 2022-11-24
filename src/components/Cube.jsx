@@ -64,6 +64,8 @@ export const Cube = ({ position, texture }) => {
             <boxBufferGeometry attach='geometry' />
             <meshStandardMaterial 
                 color={isHovered ? 'grey' : 'white'}
+                emissive={isHovered ? 'yellow' : 'rgba(0,0,0,0)'}
+                emissiveIntensity={'0.2'}
                 map={activeTexture} 
                 transparent={true}
                 opacity={texture === 'glass' ? 0.6 : 1}
